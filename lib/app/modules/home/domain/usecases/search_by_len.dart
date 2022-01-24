@@ -23,13 +23,6 @@ class SearchByLenImpl implements SearchByLen {
       return result.fold(
           (l) => left(l), (r) => r.isEmpty ? left(ResultEmpty()) : right(r));
     }
-
-    // var option = optionOf(len);
-
-    // return option.fold(() => Left(InvalidLen()), (lenT) async {
-    //   var result = await repository.getData(lenT);
-    //   return result.fold(
-    //       (l) => left(l), (r) => r.isEmpty ? left(ResultEmpty()) : right(r));
-    // });
+    
   }
 }

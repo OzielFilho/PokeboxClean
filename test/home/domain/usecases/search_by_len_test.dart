@@ -21,7 +21,7 @@ main() {
         Result(height: 1, name: faker.internet.userName(), weight: 1);
   });
 
-  test('Deve retornar uma lista com os pokemons', () async {
+  test('Deve retornar uma lista com os result', () async {
     when(() => repository!.getData(any()))
         .thenAnswer((_) async => Right(<Result>[resultSearch!]));
     var result = await usecase!(1);
@@ -29,7 +29,8 @@ main() {
   });
 
   test('Deve retornar uma Failure de InvalidLen', () async {
-    when(() => repository!.getData(any())).thenThrow((_) async => InvalidLen());
+    when(() => repository!.getData(any()))
+        .thenThrow((_) async => Left(InvalidLen()));
 
     final result = await usecase!(-1);
 
