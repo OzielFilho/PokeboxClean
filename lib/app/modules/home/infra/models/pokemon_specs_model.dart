@@ -3,9 +3,17 @@ import 'dart:convert';
 import 'package:pokebox/app/modules/home/domain/entities/specs.dart';
 
 class PokemonSpecs extends Specs {
+  @override
+  // ignore: overridden_fields
   final int height;
+  @override
+  // ignore: overridden_fields
   final String photo;
+  @override
+  // ignore: overridden_fields
   final String name;
+  @override
+  // ignore: overridden_fields
   final int weight;
 
   PokemonSpecs(this.height, this.photo, this.name, this.weight)

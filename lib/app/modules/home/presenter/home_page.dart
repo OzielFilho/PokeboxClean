@@ -3,6 +3,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokebox/app/modules/home/presenter/home_controller.dart';
 
+import 'widgets/modals/showPokemon.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -21,9 +23,14 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               shrinkWrap: true,
               itemCount: controller.pokemons.length,
               itemBuilder: (c, i) => ListTile(
-                    title: Text(controller.pokemons[i].name!),
-                    // ignore: avoid_print
-                    onTap: () => print(controller.pokemons[i].url),
+                    title: Text('${i + 1}. ${controller.pokemons[i].name}'),
+                    onTap: () async {
+                      await controller
+                          .getSpecsPokemon(controller.pokemons[i].url);
+                      showPokemon(
+                          context: context,
+                          pokemonActual: controller.pokemonActual);
+                    },
                   )),
         ),
       );

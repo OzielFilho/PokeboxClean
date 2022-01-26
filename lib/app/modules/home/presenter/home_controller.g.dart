@@ -12,15 +12,30 @@ mixin _$HomeController on _HomeControllerBase, Store {
   final _$pokemonsAtom = Atom(name: '_HomeControllerBase.pokemons');
 
   @override
-  List<Result> get pokemons {
+  List<PokemonModel> get pokemons {
     _$pokemonsAtom.reportRead();
     return super.pokemons;
   }
 
   @override
-  set pokemons(List<Result> value) {
+  set pokemons(List<PokemonModel> value) {
     _$pokemonsAtom.reportWrite(value, super.pokemons, () {
       super.pokemons = value;
+    });
+  }
+
+  final _$pokemonActualAtom = Atom(name: '_HomeControllerBase.pokemonActual');
+
+  @override
+  PokemonSpecs? get pokemonActual {
+    _$pokemonActualAtom.reportRead();
+    return super.pokemonActual;
+  }
+
+  @override
+  set pokemonActual(PokemonSpecs? value) {
+    _$pokemonActualAtom.reportWrite(value, super.pokemonActual, () {
+      super.pokemonActual = value;
     });
   }
 
@@ -31,10 +46,19 @@ mixin _$HomeController on _HomeControllerBase, Store {
     return _$getDataAsyncAction.run(() => super.getData(len));
   }
 
+  final _$getSpecsPokemonAsyncAction =
+      AsyncAction('_HomeControllerBase.getSpecsPokemon');
+
+  @override
+  Future<void> getSpecsPokemon(String url) {
+    return _$getSpecsPokemonAsyncAction.run(() => super.getSpecsPokemon(url));
+  }
+
   @override
   String toString() {
     return '''
-pokemons: ${pokemons}
+pokemons: ${pokemons},
+pokemonActual: ${pokemonActual}
     ''';
   }
 }

@@ -2,10 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:pokebox/app/modules/home/infra/datasources/get_pokemon_specs_datasource.dart';
 import 'package:pokebox/app/modules/home/infra/models/pokemon_specs_model.dart';
 
-class PokeapiSearchDatasource implements GetPokemonSpecsDatasource {
+class GetPokemonApiDatasource implements GetPokemonSpecsDatasource {
   final Dio dio;
 
-  PokeapiSearchDatasource(this.dio);
+  GetPokemonApiDatasource(this.dio);
 
   @override
   Future<PokemonSpecs> getPokemonSpecs(String url) async {
