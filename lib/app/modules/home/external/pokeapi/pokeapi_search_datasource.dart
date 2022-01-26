@@ -15,7 +15,7 @@ class PokeapiSearchDatasource implements SearchDatasource {
       var listJson = result.data['results'] as List;
 
       return listJson.map((pokemon) {
-        return PokemonModel(pokemon['name'], pokemon['url']);
+        return PokemonModel.fromMap(pokemon);
       }).toList();
     } else {
       throw Exception();

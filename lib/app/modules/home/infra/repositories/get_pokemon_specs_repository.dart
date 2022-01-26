@@ -11,10 +11,10 @@ class GetPokemonSpecsRepositoryImpl implements GetSpecsRepository {
   GetPokemonSpecsRepositoryImpl(this.datasource);
 
   @override
-  Future<Either<Failure, Specs>> getSpecs() async {
+  Future<Either<Failure, Specs>> getSpecs(String url) async {
     PokemonSpecs pokemonSpecs;
     try {
-      pokemonSpecs = await datasource.getPokemonSpecs();
+      pokemonSpecs = await datasource.getPokemonSpecs(url);
     } catch (e) {
       return Left(GetSpecsError());
     }

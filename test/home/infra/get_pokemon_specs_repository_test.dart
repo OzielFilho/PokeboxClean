@@ -21,19 +21,19 @@ main() {
   });
 
   test('Deve retorna um lista com os pokemons', () async {
-    when(() => dataSource!.getPokemonSpecs())
+    when(() => dataSource!.getPokemonSpecs(any()))
         .thenAnswer((_) async => pokemonModel!);
 
-    final response = await repository!.getSpecs();
+    final response = await repository!.getSpecs(faker.internet.uri('http'));
 
     expect(response.fold((l) => null, (r) => r), isA<PokemonSpecs>());
   });
 
   test('Deve retorna uma Failure GetSpecsError', () async {
-    when(() => dataSource!.getPokemonSpecs())
+    when(() => dataSource!.getPokemonSpecs(any()))
         .thenThrow((_) async => GetSpecsError());
 
-    final response = await repository!.getSpecs();
+    final response = await repository!.getSpecs(faker.internet.uri('http'));
 
     expect(response.fold((l) => l, (r) => null), isA<GetSpecsError>());
   });

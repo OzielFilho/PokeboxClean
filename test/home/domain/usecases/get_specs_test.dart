@@ -25,9 +25,20 @@ main() {
   });
 
   test('Deve retornar uma especificacao', () async {
-    when(() => repository!.getSpecs())
+    when(() => repository!.getSpecs(any()))
         .thenAnswer((_) async => Right(resultSearch!));
-    var result = await usecase!();
+    var result = await usecase!(faker.internet.uri('http'));
     expect(result.fold((l) => null, (r) => r), isA<Specs>());
   });
+
+  test('Deve retornar uma Failure de InvalidUri ', () async {
+    when(() => repository!.getSpecs(any()))
+        .thenThrow((_) async => Left(InvalidUri()));
+
+    var result = await usecase!('');
+
+    expect(result.fold((l) => l, (r) => null), isA<InvalidUri>());
+  });
+
+  //InvalidUri
 }
