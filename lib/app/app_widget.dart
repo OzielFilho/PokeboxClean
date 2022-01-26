@@ -6,6 +6,9 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp().modular();
+    return const MaterialApp(
+      title: 'Pokebox',
+      debugShowCheckedModeBanner: false,
+    ).modular();
   }
 }

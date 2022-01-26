@@ -3,30 +3,31 @@ import 'dart:convert';
 import 'package:pokebox/app/modules/home/domain/entities/result.dart';
 
 class PokemonModel extends Result {
+  @override
+  // ignore: overridden_fields
   final String name;
-  final int height;
-  final int weight;
+  @override
+  // ignore: overridden_fields
+  final String url;
 
-  PokemonModel(this.name, this.height, this.weight);
+  PokemonModel(this.name, this.url) : super(name: name, url: url);
 
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'height': height,
-      'weight': weight,
+      'url': url,
     };
+  }
+
+  factory PokemonModel.fromMap(Map<String, dynamic> map) {
+    return PokemonModel(
+      map['name'] ?? '',
+      map['url'] ?? '',
+    );
   }
 
   String toJson() => json.encode(toMap());
 
   factory PokemonModel.fromJson(String source) =>
       PokemonModel.fromMap(json.decode(source));
-
-  factory PokemonModel.fromMap(Map<String, dynamic> map) {
-    return PokemonModel(
-      map['name'] ?? '',
-      map['height']?.toInt() ?? 0,
-      map['weight']?.toInt() ?? 0,
-    );
-  }
 }

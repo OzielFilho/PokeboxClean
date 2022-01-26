@@ -15,7 +15,8 @@ main() {
   setUp(() {
     dataSource = SearchDataSourceMock();
     repository = SearchRepositoryImpl(dataSource!);
-    pokemonModel = PokemonModel(faker.internet.userName(), 1, 1);
+    pokemonModel =
+        PokemonModel(faker.internet.userName(), faker.internet.uri('http'));
   });
 
   test('Deve retorna um lista com os pokemons', () async {

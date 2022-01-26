@@ -1,10 +1,9 @@
 class Result {
   String? name;
-  int? height;
-  int? weight;
+  String? url;
+
   Result({
     this.name,
-    this.height,
-    this.weight,
+    this.url,
   });
 }

@@ -17,8 +17,8 @@ main() {
   setUp(() {
     repository = SearchRepositoryMock();
     usecase = SearchByLenImpl(repository!);
-    resultSearch =
-        Result(height: 1, name: faker.internet.userName(), weight: 1);
+    resultSearch = Result(
+        name: faker.internet.userName(), url: faker.internet.uri('http'));
   });
 
   test('Deve retornar uma lista com os result', () async {
