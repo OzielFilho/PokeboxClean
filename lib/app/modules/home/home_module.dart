@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pokebox/app/core/dioClient/dioclient_impl.dart';
 import 'package:pokebox/app/modules/home/external/pokeapi/pokeapi_search_datasource.dart';
 import 'package:pokebox/app/modules/home/infra/repositories/get_pokemon_specs_repository.dart';
 import 'package:pokebox/app/modules/home/infra/repositories/search_repository_impl.dart';
@@ -14,10 +15,11 @@ class HomeModule extends Module {
   @override
   List<Bind> get binds => [
         Bind((i) => Dio()),
-        Bind((i) => PokeapiSearchDatasource(i<Dio>())),
+        Bind((i) => DioClientImplementation(i<Dio>())),
+        Bind((i) => PokeapiSearchDatasource(i<DioClientImplementation>())),
         Bind((i) => SearchRepositoryImpl(i<PokeapiSearchDatasource>())),
         Bind((i) => SearchByLenImpl(i<SearchRepositoryImpl>())),
-        Bind((i) => GetPokemonApiDatasource(i<Dio>())),
+        Bind((i) => GetPokemonApiDatasource(i<DioClientImplementation>())),
         Bind(
             (i) => GetPokemonSpecsRepositoryImpl(i<GetPokemonApiDatasource>())),
         Bind((i) => GetSpecsImpl(i<GetPokemonSpecsRepositoryImpl>())),
