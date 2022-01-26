@@ -23,7 +23,7 @@ class PokemonSpecs extends Specs {
   factory PokemonSpecs.fromMap(Map<String, dynamic> map) {
     return PokemonSpecs(
       map['height']?.toInt() ?? 0,
-      map['photo'] ?? '',
+      map['sprites']['front_default'] ?? '',
       map['name'] ?? '',
       map['weight']?.toInt() ?? 0,
     );
