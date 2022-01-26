@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokebox/app/modules/home/presenter/home_controller.dart';
-
-import 'widgets/modals/showPokemon.dart';
+import 'package:pokebox/app/modules/home/presenter/widgets/listPokemon/list_pokemon_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,21 +16,30 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   Widget build(BuildContext context) {
     return Observer(builder: (_) {
       return Scaffold(
-        body: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: controller.pokemons.length,
-              itemBuilder: (c, i) => ListTile(
-                    title: Text('${i + 1}. ${controller.pokemons[i].name}'),
-                    onTap: () async {
-                      await controller
-                          .getSpecsPokemon(controller.pokemons[i].url);
-                      showPokemon(
-                          context: context,
-                          pokemonActual: controller.pokemonActual);
-                    },
-                  )),
+        body: SingleChildScrollView(
+          controller: controller.controllerScroll,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Text(
+                  'Pokemon List',
+                  style: Theme.of(context).textTheme.headline2,
+                ),
+                Divider(
+                  color: Theme.of(context).primaryColor,
+                ),
+                controller.pokemons.isNotEmpty
+                    ? ListPokemonWidget(
+                        controllerScroll: controller.controllerScroll!,
+                      )
+                    : CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            Theme.of(context).hintColor),
+                      ),
+              ],
+            ),
+          ),
         ),
       );
     });

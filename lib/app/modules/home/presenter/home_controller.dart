@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pokebox/app/modules/home/domain/usecases/get_specs.dart';
 import 'package:pokebox/app/modules/home/domain/usecases/search_by_len.dart';
@@ -13,11 +14,14 @@ abstract class _HomeControllerBase with Store {
   final GetSpecs getSpecs;
 
   _HomeControllerBase(this.searchByLen, this.getSpecs) {
-    getData(50);
+    getData(100);
   }
 
   @observable
   List<PokemonModel> pokemons = [];
+
+  @observable
+  ScrollController? controllerScroll = ScrollController();
 
   @observable
   PokemonSpecs? pokemonActual;

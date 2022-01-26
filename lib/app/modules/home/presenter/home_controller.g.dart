@@ -24,6 +24,22 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  final _$controllerScrollAtom =
+      Atom(name: '_HomeControllerBase.controllerScroll');
+
+  @override
+  ScrollController? get controllerScroll {
+    _$controllerScrollAtom.reportRead();
+    return super.controllerScroll;
+  }
+
+  @override
+  set controllerScroll(ScrollController? value) {
+    _$controllerScrollAtom.reportWrite(value, super.controllerScroll, () {
+      super.controllerScroll = value;
+    });
+  }
+
   final _$pokemonActualAtom = Atom(name: '_HomeControllerBase.pokemonActual');
 
   @override
@@ -58,6 +74,7 @@ mixin _$HomeController on _HomeControllerBase, Store {
   String toString() {
     return '''
 pokemons: ${pokemons},
+controllerScroll: ${controllerScroll},
 pokemonActual: ${pokemonActual}
     ''';
   }
