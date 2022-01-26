@@ -6,10 +6,15 @@ import 'package:pokebox/app/modules/home/infra/models/pokemon_specs_model.dart';
 showPokemon({BuildContext? context, PokemonSpecs? pokemonActual}) {
   return showModalBottomSheet(
     context: context!,
+    isDismissible: true,
+    enableDrag: false,
+    isScrollControlled: false,
     backgroundColor: Theme.of(context).backgroundColor,
     builder: (context) => Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CircleAvatar(
             radius: 50,
@@ -17,6 +22,9 @@ showPokemon({BuildContext? context, PokemonSpecs? pokemonActual}) {
             backgroundImage: NetworkImage(
               pokemonActual!.photo,
             ),
+          ),
+          const SizedBox(
+            height: 15,
           ),
           Text(
             pokemonActual.name,

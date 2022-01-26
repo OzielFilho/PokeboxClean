@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:pokebox/app/core/validations/validations.dart';
 
 import 'package:pokebox/app/modules/home/domain/entities/result.dart';
 import 'package:pokebox/app/modules/home/domain/errors/errors.dart';
@@ -16,13 +17,10 @@ class SearchByLenImpl implements SearchByLen {
 
   @override
   Future<Either<Failure, List<Result>>> call(int len) async {
-    if (len < 0) {
+    if (Validations().invalidLen(len)) {
       return Left(InvalidLen());
     } else {
-      var result = await repository.getData(len);
-      return result.fold(
-          (l) => left(l), (r) => r.isEmpty ? left(ResultEmpty()) : right(r));
+      return await repository.getData(len);
     }
-    
   }
 }

@@ -1,4 +1,4 @@
-import 'package:pokebox/app/core/dioClient/dioclient_impl.dart';
+import 'package:pokebox/app/core/httpClient/dioclient_impl.dart';
 import 'package:pokebox/app/modules/home/infra/datasources/search_datasource.dart';
 import 'package:pokebox/app/modules/home/infra/models/pokemon_model.dart';
 

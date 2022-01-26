@@ -1,9 +1,9 @@
 class Result {
-  String? name;
-  String? url;
+  final String name;
+  final String url;
 
   Result({
-    this.name,
-    this.url,
+    required this.name,
+    required this.url,
   });
 }

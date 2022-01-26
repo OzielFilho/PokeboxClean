@@ -18,26 +18,28 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       return Scaffold(
         body: SingleChildScrollView(
           controller: controller.controllerScroll,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Text(
-                  'Pokemon List',
-                  style: Theme.of(context).textTheme.headline2,
-                ),
-                Divider(
-                  color: Theme.of(context).primaryColor,
-                ),
-                controller.pokemons.isNotEmpty
-                    ? ListPokemonWidget(
-                        controllerScroll: controller.controllerScroll!,
-                      )
-                    : CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                            Theme.of(context).hintColor),
-                      ),
-              ],
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Text(
+                    'Pokemon List',
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
+                  Divider(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  controller.pokemons.isNotEmpty
+                      ? ListPokemonWidget(
+                          controllerScroll: controller.controllerScroll!,
+                        )
+                      : CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                              Theme.of(context).hintColor),
+                        ),
+                ],
+              ),
             ),
           ),
         ),

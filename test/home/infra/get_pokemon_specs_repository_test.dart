@@ -2,20 +2,20 @@ import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pokebox/app/modules/home/domain/errors/errors.dart';
-import 'package:pokebox/app/modules/home/infra/datasources/get_pokemon_specs_datasource.dart';
+import 'package:pokebox/app/modules/home/infra/datasources/pokemon_specs_datasource.dart';
 import 'package:pokebox/app/modules/home/infra/models/pokemon_specs_model.dart';
-import 'package:pokebox/app/modules/home/infra/repositories/get_pokemon_specs_repository.dart';
+import 'package:pokebox/app/modules/home/infra/repositories/pokemon_specs_repository.dart';
 
-class GetPokemonSpecsDataSourceMock extends Mock
-    implements GetPokemonSpecsDatasource {}
+class PokemonSpecsDataSourceMock extends Mock
+    implements PokemonSpecsDatasource {}
 
 main() {
-  GetPokemonSpecsDatasource? dataSource;
-  GetPokemonSpecsRepositoryImpl? repository;
+  PokemonSpecsDatasource? dataSource;
+  PokemonSpecsRepositoryImpl? repository;
   PokemonSpecs? pokemonModel;
   setUp(() {
-    dataSource = GetPokemonSpecsDataSourceMock();
-    repository = GetPokemonSpecsRepositoryImpl(dataSource!);
+    dataSource = PokemonSpecsDataSourceMock();
+    repository = PokemonSpecsRepositoryImpl(dataSource!);
     pokemonModel =
         PokemonSpecs(0, faker.internet.userName(), faker.image.image(), 0);
   });
