@@ -3,22 +3,12 @@ import 'dart:convert';
 import 'package:pokebox/app/modules/home/domain/entities/specs.dart';
 
 class PokemonSpecs extends Specs {
-  @override
-  // ignore: overridden_fields
-  final int height;
-  @override
-  // ignore: overridden_fields
-  final String photo;
-  @override
-  // ignore: overridden_fields
-  final String name;
-  @override
-  // ignore: overridden_fields
-  final int weight;
-
-  PokemonSpecs(this.height, this.photo, this.name, this.weight)
-      : super(height: height, name: name, photo: photo, weight: weight);
-
+  PokemonSpecs(
+      {required String name,
+      required String photo,
+      required int height,
+      required int weight})
+      : super(name: name, photo: photo, height: height, weight: weight);
   Map<String, dynamic> toMap() {
     return {
       'height': height,
@@ -30,10 +20,10 @@ class PokemonSpecs extends Specs {
 
   factory PokemonSpecs.fromMap(Map<String, dynamic> map) {
     return PokemonSpecs(
-      map['height']?.toInt() ?? 0,
-      map['sprites']['front_default'] ?? '',
-      map['name'] ?? '',
-      map['weight']?.toInt() ?? 0,
+      height: map['height']?.toInt() ?? 0,
+      photo: map['sprites']['front_default'] ?? '',
+      name: map['name'] ?? '',
+      weight: map['weight']?.toInt() ?? 0,
     );
   }
 

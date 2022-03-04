@@ -4,19 +4,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pokebox/app/modules/home/domain/entities/specs.dart';
 import 'package:pokebox/app/modules/home/domain/errors/errors.dart';
-import 'package:pokebox/app/modules/home/domain/repositories/get_specs_repository.dart';
-import 'package:pokebox/app/modules/home/domain/usecases/get_specs.dart';
+import 'package:pokebox/app/modules/home/domain/repositories/pokemon_repository.dart';
+import 'package:pokebox/app/modules/home/domain/usecases/get_pokemon_specs.dart';
 
-class GetSpecsRepositoryMock extends Mock implements GetSpecsRepository {}
+class PokemonRepositoryMock extends Mock implements PokemonRepository {}
 
 main() {
-  GetSpecsRepository? repository;
-  GetSpecsImpl? usecase;
+  PokemonRepository? repository;
+  GetPokemonSpecsImpl? usecase;
   Specs? resultSearch;
 
   setUp(() {
-    repository = GetSpecsRepositoryMock();
-    usecase = GetSpecsImpl(repository!);
+    repository = PokemonRepositoryMock();
+    usecase = GetPokemonSpecsImpl(repository!);
     resultSearch = Specs(
         height: 0,
         name: faker.internet.userName(),
@@ -25,20 +25,18 @@ main() {
   });
 
   test('Deve retornar uma especificacao', () async {
-    when(() => repository!.getSpecs(any()))
+    when(() => repository!.getSpecsPokemon(any()))
         .thenAnswer((_) async => Right(resultSearch!));
     var result = await usecase!(faker.internet.uri('http'));
     expect(result.fold((l) => null, (r) => r), isA<Specs>());
   });
 
   test('Deve retornar uma Failure de InvalidUri ', () async {
-    when(() => repository!.getSpecs(any()))
+    when(() => repository!.getSpecsPokemon(any()))
         .thenThrow((_) async => Left(InvalidUri()));
 
     var result = await usecase!('');
 
     expect(result.fold((l) => l, (r) => null), isA<InvalidUri>());
   });
-
-  //InvalidUri
 }

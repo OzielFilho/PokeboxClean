@@ -1,16 +1,13 @@
 import 'dart:convert';
 
-import 'package:pokebox/app/modules/home/domain/entities/result.dart';
+import 'package:pokebox/app/modules/home/domain/entities/pokemon.dart';
+import 'package:pokebox/app/modules/home/domain/entities/specs.dart';
+import 'package:pokebox/app/modules/home/infra/models/pokemon_specs_model.dart';
 
-class PokemonModel extends Result {
-  @override
-  // ignore: overridden_fields
-  final String name;
-  @override
-  // ignore: overridden_fields
-  final String url;
-
-  PokemonModel(this.name, this.url) : super(name: name, url: url);
+class PokemonModel extends Pokemon {
+  PokemonModel(
+      {required Specs specs, required String name, required String url})
+      : super(specs: specs, name: name, url: url);
 
   Map<String, dynamic> toMap() {
     return {
@@ -19,15 +16,13 @@ class PokemonModel extends Result {
     };
   }
 
-  factory PokemonModel.fromMap(Map<String, dynamic> map) {
+  factory PokemonModel.fromMap(Map<String, dynamic> map, PokemonSpecs specs) {
     return PokemonModel(
-      map['name'] ?? '',
-      map['url'] ?? '',
+      name: map['name'] ?? '',
+      url: map['url'] ?? '',
+      specs: specs,
     );
   }
 
   String toJson() => json.encode(toMap());
-
-  factory PokemonModel.fromJson(String source) =>
-      PokemonModel.fromMap(json.decode(source));
 }

@@ -62,14 +62,6 @@ mixin _$HomeController on _HomeControllerBase, Store {
     return _$getDataAsyncAction.run(() => super.getData(len));
   }
 
-  final _$getSpecsPokemonAsyncAction =
-      AsyncAction('_HomeControllerBase.getSpecsPokemon');
-
-  @override
-  Future<void> getSpecsPokemon(String url) {
-    return _$getSpecsPokemonAsyncAction.run(() => super.getSpecsPokemon(url));
-  }
-
   @override
   String toString() {
     return '''

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokebox/app/modules/home/presenter/home_controller.dart';
-import 'package:pokebox/app/modules/home/presenter/widgets/modals/showPokemon.dart';
 
 class ListPokemonWidget extends StatelessWidget {
   final ScrollController controllerScroll;
@@ -26,11 +25,11 @@ class ListPokemonWidget extends StatelessWidget {
                   style: Theme.of(context).textTheme.button,
                 ),
                 onTap: () async {
-                  await controllerHome
-                      .getSpecsPokemon(controllerHome.pokemons[i].url);
-                  showPokemon(
-                      context: context,
-                      pokemonActual: controllerHome.pokemonActual);
+                  // await controllerHome
+                  //     .getSpecsPokemon(controllerHome.pokemons[i].url);
+                  // showPokemon(
+                  //     context: context,
+                  //     pokemonActual: controllerHome.pokemonActual);
                 },
               )),
     );
