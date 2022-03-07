@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 ThemeData? appTheme = ThemeData(
   visualDensity: VisualDensity.adaptivePlatformDensity,
+  cardColor: const Color.fromARGB(255, 18, 22, 32),
   textTheme: const TextTheme(
     headline1: TextStyle(
       fontFamily: 'SourceSansPro',

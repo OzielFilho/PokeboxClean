@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import '../domain/usecases/get_list_pokemon.dart';
 import 'package:pokebox/app/modules/home/infra/models/pokemon_model.dart';
-import 'package:pokebox/app/modules/home/infra/models/pokemon_specs_model.dart';
 
 part 'home_controller.g.dart';
 
@@ -22,9 +21,6 @@ abstract class _HomeControllerBase with Store {
 
   @observable
   ScrollController? controllerScroll = ScrollController();
-
-  @observable
-  PokemonSpecs? pokemonActual;
 
   @action
   Future<void> getData(int len) async {

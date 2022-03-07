@@ -40,21 +40,6 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
-  final _$pokemonActualAtom = Atom(name: '_HomeControllerBase.pokemonActual');
-
-  @override
-  PokemonSpecs? get pokemonActual {
-    _$pokemonActualAtom.reportRead();
-    return super.pokemonActual;
-  }
-
-  @override
-  set pokemonActual(PokemonSpecs? value) {
-    _$pokemonActualAtom.reportWrite(value, super.pokemonActual, () {
-      super.pokemonActual = value;
-    });
-  }
-
   final _$getDataAsyncAction = AsyncAction('_HomeControllerBase.getData');
 
   @override
@@ -66,8 +51,7 @@ mixin _$HomeController on _HomeControllerBase, Store {
   String toString() {
     return '''
 pokemons: ${pokemons},
-controllerScroll: ${controllerScroll},
-pokemonActual: ${pokemonActual}
+controllerScroll: ${controllerScroll}
     ''';
   }
 }

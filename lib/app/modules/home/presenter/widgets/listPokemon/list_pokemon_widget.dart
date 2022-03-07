@@ -13,25 +13,44 @@ class ListPokemonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controllerHome = Modular.get<HomeController>();
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      child: ListView.builder(
-          controller: controllerScroll,
-          shrinkWrap: true,
-          itemCount: controllerHome.pokemons.length,
-          itemBuilder: (c, i) => ListTile(
-                title: Text(
-                  '${i + 1}. ${controllerHome.pokemons[i].name.toUpperCase()}',
-                  style: Theme.of(context).textTheme.button,
+    return GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+        ),
+        controller: controllerScroll,
+        shrinkWrap: true,
+        itemCount: controllerHome.pokemons.length,
+        //padding: const EdgeInsets.symmetric(horizontal: 10),
+        itemBuilder: (c, i) => Card(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Text(
+                      controllerHome.pokemons[i].name,
+                      style: Theme.of(context).textTheme.headline2,
+                    ),
+                    Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: NetworkImage(
+                                controllerHome.pokemons[i].specs.photo)),
+                      ),
+                    ),
+                    Text(
+                      'Weight: ${controllerHome.pokemons[i].specs.weight} kg',
+                      style: Theme.of(context).textTheme.subtitle2,
+                    ),
+                    Text(
+                      'Height: ${controllerHome.pokemons[i].specs.height / 10} m',
+                      style: Theme.of(context).textTheme.subtitle2,
+                    ),
+                  ],
                 ),
-                onTap: () async {
-                  // await controllerHome
-                  //     .getSpecsPokemon(controllerHome.pokemons[i].url);
-                  // showPokemon(
-                  //     context: context,
-                  //     pokemonActual: controllerHome.pokemonActual);
-                },
-              )),
-    );
+              ),
+            ));
   }
 }
